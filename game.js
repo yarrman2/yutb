@@ -1,7 +1,7 @@
 console.log(window.innerWidth, window.innerHeight);
 var app = document.getElementById('app');
-app.setAttribute('width', window.innerWidth);
-app.setAttribute('height', window.innerHeight);
+app.setAttribute('width', window.outerWidth);
+app.setAttribute('height', window.outerHeight);
 
 var config  = {
     type: Phaser.AUTO,
