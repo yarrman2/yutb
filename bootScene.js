@@ -45,10 +45,12 @@ var BootScene = new Phaser.Class({
         this.game.player = new Phaser.GameObjects.Container(this, 0,0);
         this.game.player.setDataEnabled();
         this.game.player.setData({money: 100000, subscribers: 1000});
+        this.game.interface = new Phaser.GameObjects.Container(this, 0,0);
+        this.game.interface.setDataEnabled();
+        this.game.interface.setData({mainTab: 0});
+        
         this.scene.start('lobby');
-        this.game.player.on('changedata', function (go, key, val) {
-            console.log('from boot', key, val);
-        })
+        
 
     }
 });

@@ -92,11 +92,9 @@ class Shapes extends Phaser.Plugins.BasePlugin {
         cont.setSize(_bg.width,_bg.height);
         cont.setInteractive();
         cont.on("pointerdown", () => {
-            console.log(1)
             _bgActive.visible = true;
         }, scene);
         cont.on("pointerup", () => {
-            console.log(2)
             _bgActive.visible = false;
             callback && callback.call(scene);
         }, scene);

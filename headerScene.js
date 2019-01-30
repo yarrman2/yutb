@@ -17,8 +17,9 @@ var HeaderScene = {
         var g = this.add.graphics();
         g.fillStyle(0xffffff, 1);
         g.fillRect(0, 0, 640, 88);
-        g.fillStyle(0xff0000, 1);
-        g.fillRect(0,88,  640, 88);
+
+       /*  g.fillStyle(0xff0000, 1);
+        g.fillRect(0,88,  640, 88); */
         var thickness = 2;
         var color = 0xe5e5e5;
         var alpha = 1;
@@ -52,7 +53,7 @@ var HeaderScene = {
             console.log(this.val)
 
         });
-
+/* 
         var font = { fontFamily: 'Arial', fontSize: 30, color: '#f00' }
         var text = this.add.text(-70, -18, 'Увеличить', font);
 
@@ -61,19 +62,19 @@ var HeaderScene = {
             console.log('plus', subscribers)
             player.data.set('subscribers', subscribers + 1000);
         });
-        console.log(game.data);
+        console.log(game.data); */
 
         var moneyTextVal =  getString(MONEY, '$', 1);
         var moneyText = this.add.text(330, 28,  moneyTextVal, {fontFamily: 'Arial', fontSize: 30, color: '#333'});
         
-        var subscribersTextVal =  getString(SUBSCRIBERS, 'Подписчики: ', 2, 30);
+        /* var subscribersTextVal =  getString(SUBSCRIBERS, 'Подписчики: ', 2, 30);
         var subscribersText = this.add.text(30, 115,  subscribersTextVal, {fontFamily: 'Arial', fontSize: 30, color: '#fff'});
-
+ */
         player.on('changedata', function (go, key, value) {
             if(key == 'money') {
                 moneyText.text = getString(MONEY, '$', 1);
             }else if(key == 'subscribers') {
-                subscribersText.text =  getString(SUBSCRIBERS, 'Подписчики: ', 2, 30);
+                //subscribersText.text =  getString(SUBSCRIBERS, 'Подписчики: ', 2, 30);
             }
         })
     }
