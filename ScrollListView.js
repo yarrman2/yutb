@@ -18,20 +18,20 @@ ScrollListView.prototype = {
 
         var bgContainer = scene.add.container(0, 0);
         this.scrollable = bgContainer;
-        var sceneContainer = scene.add.container(x, y);
+        var sceneContainer = scene.add.container(0, 0);
         sceneContainer.add(bgContainer);
         container.add(sceneContainer);
 
         this.sceneContainer = sceneContainer;
         this.bgContainer = bgContainer;
-        bgContainer.setSize(640, 0);
+        bgContainer.setSize(w, 0);
         
         /* var g = scene.add.graphics();
         g.fillStyle(0xffccff, 1);
         g.fillRect(0, 0 , w, h);
         bgContainer.add(g); */
      
-        sceneContainer.setSize(640, 1600);
+        sceneContainer.setSize(w, 1600);
 
         sceneContainer.setInteractive();
         scene.input.setDraggable(sceneContainer);
