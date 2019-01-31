@@ -58,7 +58,7 @@ var TabControlScene = {
             })
         });
         
-        interface.data.set('mainTab', 1);
+        //interface.data.set('mainTab', 1);
 
         sceneContainer.add(g);
         sceneContainer.add(buts);
