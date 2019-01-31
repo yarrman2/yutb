@@ -31,7 +31,7 @@ ScrollListView.prototype = {
         g.fillRect(0, 0 , w, h);
         bgContainer.add(g); */
      
-        sceneContainer.setSize(2000, 1600);
+        sceneContainer.setSize(640, 1600);
 
         sceneContainer.setInteractive();
         scene.input.setDraggable(sceneContainer);
