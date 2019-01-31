@@ -1,5 +1,6 @@
-var ScrollListView = function (scene, x, y, width, height, childs) {
-    return this.create(scene, x, y, width, height);
+var ScrollListView = function (scene, x, y, width, height, container, dir) {
+    //this.dir = dir || 1;
+    return this.create(scene, x, y, width, height, container, dir);
 }
 ScrollListView.prototype = {
     scrollAdd:  function (child, padding) {
@@ -11,7 +12,7 @@ ScrollListView.prototype = {
         container.scrollHeight = child.y + child.height;
         container.setSize(container.width, container.scrollHeight);
     },
-    create: function (scene, x, y, width, height) {
+    create: function (scene, x, y, width, height, container, dir) {
         var w = width;
         var h = height;
 
@@ -19,16 +20,16 @@ ScrollListView.prototype = {
         this.scrollable = bgContainer;
         var sceneContainer = scene.add.container(x, y);
         sceneContainer.add(bgContainer);
-        window.sceneContainer = sceneContainer;
-        window.bgContainer = bgContainer;
-        bgContainer.setSize(640, 0);
+        container.add(sceneContainer);
 
+        this.sceneContainer = sceneContainer;
+        this.bgContainer = bgContainer;
+        bgContainer.setSize(640, 0);
         
-        
-        var g = scene.add.graphics();
+        /* var g = scene.add.graphics();
         g.fillStyle(0xffccff, 1);
         g.fillRect(0, 0 , w, h);
-        bgContainer.add(g);
+        bgContainer.add(g); */
      
         sceneContainer.setSize(2000, 1600);
 
@@ -113,7 +114,7 @@ ScrollListView.prototype = {
                 });
             }
         });
-
+        
         return this;
     }
 };

@@ -34,6 +34,7 @@ var BootScene = new Phaser.Class({
         this.load.image('learnIcon', 'learnIcon.png');
         this.load.image('skully', 'skully.png');
         this.load.image('bigpic', 'bigpic.jpg');
+        this.load.image('leftArrow', 'leftArrow.png');
         
         //game.setDataEnabled();
         //game.setData({ money: 1000000, subscribers: 1000});

@@ -8,7 +8,7 @@ var TabScene = {
         this.sceneContainer = this.add.container(0, t);
 
         var g = this.add.graphics();
-        g.fillStyle(0xffccff, 1);
+        g.fillStyle(0xebebeb, 1);
         g.fillRect(0, 0 , w, h);
         this.sceneContainer.add(g);
 
@@ -16,9 +16,12 @@ var TabScene = {
         this.tabContainer.setSize(w * 6, h);
         this.sceneContainer.add(this.tabContainer);
         
-        var tabsIdx = [1,2,3,4,5];
+        var tabsIdx = [2,3,4,5];
         var scene = this;
-        var tabs = [new ProfileContainer(scene, 0, 0)];
+        var tabs = [
+            new ProfileContainer(scene, 0, 0),
+            new ThemeContainer(scene, w, 0)
+        ];
         tabsIdx.forEach(function (t) {
             var s =  scene.add.container(t * w, 0);
             s.setSize(w, h);
