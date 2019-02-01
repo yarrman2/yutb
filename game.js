@@ -11,7 +11,10 @@ var config  = {
     height: 1136,
     plugins: {
         global: [
-            { key: 'Shapes', plugin: Shapes, start: true }
+            { key: 'Shapes', plugin: Shapes, start: true },
+            { key: 'rexDrag', plugin: rexdragplugin, start: true},
+            { key: 'rexScroller', plugin: rexscrollerplugin, start: true},
+            //{ key: 'Shapes', plugin: Shapes, start: true }
         ]
     },
     scene: [       
@@ -26,7 +29,6 @@ var config  = {
             graphics.fillRoundedRect(x, y, width, height, radius);
             return graphics;
         }
-          
     }
 }
 

@@ -20,7 +20,11 @@ var TabScene = {
         var scene = this;
         var tabs = [
             new ProfileContainer(scene, 0, 0),
-            new ThemeContainer(scene, w, 0)
+            new ThemeContainer(scene, w, 0),
+            new StudioContainer(scene, w * 2, 0),
+            new CameraContainer(scene, w * 3, 0),
+            new LearnContainer(scene, w * 4, 0),
+            new PropContainer(scene, w * 5, 0),
         ];
         tabsIdx.forEach(function (t) {
             var s =  scene.add.container(t * w, 0);

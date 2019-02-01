@@ -77,7 +77,12 @@ class ProfileContainer extends Phaser.GameObjects.Container {
             {check: false, disabled: false, val: 2000},
             {check: false, disabled: true, val: 30000},
             {check: false, disabled: true, val: 400000},
+            {check: false, disabled: true, val: 800000},
+            {check: false, disabled: true, val: 1400000},
+            {check: false, disabled: true, val: 34000000},
         ]
+
+
         var adsButtons = [];
         adsTitle.forEach(function (adt, i) {
             var sh = shapes.getButtonAd(scene, {x: 120 * i + 70, y:100, val: adt}, function () {
@@ -86,13 +91,52 @@ class ProfileContainer extends Phaser.GameObjects.Container {
             adsButtons.push(sh);
         });
 
-        adContainer.add(adsButtons)
+        var adW = adsButtons[adsButtons.length - 1].x + adsButtons[adsButtons.length - 1].width;
+
+        var adBg = scene.add.rectangle(0, adsButtons[0].y + 4, adW, 118, 0xffffff);
+        
+        window.adBg = adBg;
+        adBg.setOrigin(0, 0.5);
+        adBg.setInteractive();
+
+        var scroller = scene.add.container(adContainer.x, 0);
+        var drag = scene.plugins.get('rexDrag').add(adBg, {
+            enable: true,
+            axis: 1,      //0|'both'|'h&v'|1|'horizontal'|'h'|2|'vertical'|'v'
+        });
+        var dragLast;
+        adBg.on('dragstart', function(pointer, dragX, dragY){ 
+            var dx = dragLast - dragX;
+            scroller.x = adBg.x;
+        });
+        adBg.on('drag', function(pointer, dragX, dragY){ 
+            var dx = dragLast - dragX;
+            console.log(adBg.x);
+            scroller.x = adBg.x;
+        });
+        adBg.on('dragend', function(pointer, dragX, dragY){ 
+            if (adBg.x < -371) {
+                adBg.x = -371
+            }
+            if (adBg.x > 0) {
+                adBg.x = 0
+            }
+            scroller.x = adBg.x;
+        });
+
+        window.adContainer = adContainer;
+
+        scroller.add(adsButtons);
+        window.scr = scroller;
+        adContainer.add(adBg);
+        adContainer.add(scroller);
+        //adBg.y += adContainer.y;
+        
 
         var newsContainer = scene.add.container(0, 825 - 89);
         var g2 = scene.add.rectangle(0, 0, 640, 190, '0xffffff');
         g2.setOrigin(0);
         
-
         newsContainer.add([g2]);
 
         container.add([channelName, adContainer, newsContainer])

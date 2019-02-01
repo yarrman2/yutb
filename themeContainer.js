@@ -53,30 +53,37 @@ class ThemeContainer extends Phaser.GameObjects.Container {
         var item1 = new ThemeItem(scene, 0, 0, 'Выдавать чужие \nролики за свои', 60, 'в месяц', function () {
             console.log('item');
         });
-        
+
         var item2 = new ThemeItem(scene, 0, 0, 'Веселые ролики \nс других каналов', 80, 'в месяц', function () {
             console.log('item');
         });
+
         var item3 = new ThemeItem(scene, 0, 0, 'Веселые ролики \nс других каналов', 160, 'в месяц', function () {
             console.log('item');
         });
+
         var item4 = new ThemeItem(scene, 0, 0, 'Веселые ролики \nс других каналов', 280, 'в месяц', function () {
             console.log('item');
         });
+
         var item5 = new ThemeItem(scene, 0, 0, 'Веселые ролики \nс других каналов', 580, 'в месяц', function () {
             console.log('item');
         });
 
-        var scrollArea = new ScrollListView(scene, 0, 95, w, 832, container);
+        /* var scrollArea = new ScrollListView(scene, 0, 95, w,  832);
         scrollArea.scrollAdd(item1, 20);
         scrollArea.scrollAdd(item2, 20);
         scrollArea.scrollAdd(item3, 20);
         scrollArea.scrollAdd(item4, 20);
         scrollArea.scrollAdd(item5, 20);
+         */
         
-        container.add([bg1, leftArrow, themeTitle]);
-        //container.add([scrollArea]);
-
+        var scrollArea = new ScrollListView(scene, 0, 95, w, 832, [item1, item2, item3, item4, item5], 20);
+        container.add([scrollArea, bg1, leftArrow, themeTitle]);
         return container;
+    }
+    
+    update () {
+       
     }
 }
