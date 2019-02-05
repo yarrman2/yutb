@@ -104,6 +104,8 @@ class ProfileContainer extends Phaser.GameObjects.Container {
         var adBg;
         var scroller;
         var timeTres = 200;
+        var deltaTres = 50;
+        var beginPointerX = 0
         var startDrag = false;
         var lastGO = null;
         var deltaX = 0;
@@ -121,6 +123,7 @@ class ProfileContainer extends Phaser.GameObjects.Container {
         scene.input.on('dragstart', function(pointer, gameObject){ 
             if (gameObject.type == 'adButton') {
                 deltaX = scroller.x - pointer.x;
+                beginPointerX = pointer.x;
                 gameObject.time = Date.now();
                 gameObject.pointerout = false;
                 lastGO = gameObject;
@@ -131,8 +134,8 @@ class ProfileContainer extends Phaser.GameObjects.Container {
 
         scene.input.on('drag', function(pointer, gameObject, dragX, dragY){
             console.log('scene drag')
-            if (gameObject == lastGO) {
-                if (Date.now() - gameObject.time > timeTres) {
+            if (!startDrag && gameObject == lastGO) {
+                if ( Math.abs(beginPointerX - pointer.x) > deltaTres  || Date.now() - gameObject.time > timeTres) {
                     startDrag = true;
                 }
             } else {
@@ -146,7 +149,7 @@ class ProfileContainer extends Phaser.GameObjects.Container {
 
         scene.input.on('dragend', function(pointer, gameObject, dropped){
             if (gameObject == lastGO) {
-                if (Date.now() - gameObject.time < timeTres) {
+                if (!startDrag && (Date.now() - gameObject.time < timeTres)) {
                     lastGO.clickAction();
                 }
             }
