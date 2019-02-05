@@ -103,7 +103,7 @@ class ProfileContainer extends Phaser.GameObjects.Container {
         });
         var adBg;
         var scroller;
-        var timeTres = 300;
+        var timeTres = 200;
         var startDrag = false;
         var lastGO = null;
         var deltaX = 0;
