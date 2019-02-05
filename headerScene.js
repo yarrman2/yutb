@@ -51,7 +51,13 @@ var HeaderScene = {
         
         var dotButton = shapes.getButtonGraph(this, {x:590, y:20, width:32, height:48, radius:3, frontColor: 0xffffff, activeColor: 0xf0f0f0}, dots, function () {
             console.log(this.val)
-
+            if (scene.scale.isFullscreen) {
+                scene.scale.stopFullscreen();
+                // On stop fulll screen
+            } else {
+                scene.scale.startFullscreen();
+                // On start fulll screen
+            }
         });
 /* 
         var font = { fontFamily: 'Arial', fontSize: 30, color: '#f00' }
