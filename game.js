@@ -5,10 +5,6 @@ var ratio = window.outerHeight / window.outerWidth;
 var ratioOrig = 1136/640;
 
 
-
-
-
-
 var config  = {
     type: Phaser.AUTO,
     parent: 'app',
