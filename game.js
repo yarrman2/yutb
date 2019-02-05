@@ -5,20 +5,20 @@ app.setAttribute('height', window.outerHeight);
 
 var config  = {
     type: Phaser.AUTO,
-    type: Phaser.AUTO,
     parent: 'app',
     width: 640,
-    height: 1136,
+    height: 1136, 
     plugins: {
         global: [
             { key: 'Shapes', plugin: Shapes, start: true },
-            { key: 'rexDrag', plugin: rexdragplugin, start: true},
             { key: 'rexScroller', plugin: rexscrollerplugin, start: true},
-            //{ key: 'Shapes', plugin: Shapes, start: true }
+            { key: 'rexDrag', plugin: rexdragplugin, start: true},
+            { key: 'rexBuffData', plugin: rexbuffdataplugin, start: true},
         ]
     },
     scene: [       
         BootScene,
+        TestScene,
         MenuScene,
         LobbyScene,
     ],

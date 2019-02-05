@@ -64,6 +64,8 @@ class ProfileContainer extends Phaser.GameObjects.Container {
         var nameChannelText = scene.add.text(110, 55, 'Канал Имя', {fontFamily: 'Arial', fontSize: 25, color: '#666'})
         channelName.add([g, pic, typeChannelText, nameChannelText]);
 
+
+        // Ad 
         var adContainer = scene.add.container(0, 633 - 90);
         var g1 = scene.add.rectangle(0, 0, 640, 190, '0xffffff');
         g1.setOrigin(0);
@@ -88,18 +90,73 @@ class ProfileContainer extends Phaser.GameObjects.Container {
             var sh = shapes.getButtonAd(scene, {x: 120 * i + 70, y:100, val: adt}, function () {
                 console.log(i);
             });
+            sh.type = 'adButton'
             adsButtons.push(sh);
+            sh.setInteractive({draggable: true});
+            scene.input.setDraggable(sh);
+        });
+        var adBg;
+        var scroller;
+        var timeTres = 300;
+        var startDrag = false;
+        var lastGO = null;
+        var deltaX = 0;
+
+        var limitFn = function () {
+            if (adBg.x < -371) {
+                adBg.x = -371
+            }
+            if (adBg.x > 0) {
+                adBg.x = 0
+            }
+            scroller.x = adBg.x;
+        }
+
+        scene.input.on('dragstart', function(pointer, gameObject){ 
+            if (gameObject.type == 'adButton') {
+                deltaX = scroller.x - pointer.x;
+                gameObject.time = Date.now();
+                gameObject.pointerout = false;
+                lastGO = gameObject;
+                //startDrag = true;
+                console.log('scene start', gameObject)
+            }
+        });
+
+        scene.input.on('drag', function(pointer, gameObject, dragX, dragY){
+            console.log('scene drag')
+            if (gameObject == lastGO) {
+                if (Date.now() - gameObject.time > timeTres) {
+                    startDrag = true;
+                }
+            } else {
+                startDrag = true;
+            }
+            if (startDrag) {
+                adBg.x = deltaX + pointer.x;
+                scroller.x = adBg.x;
+            }
+        });
+
+        scene.input.on('dragend', function(pointer, gameObject, dropped){
+            if (gameObject == lastGO) {
+                if (Date.now() - gameObject.time < timeTres) {
+                    lastGO.clickAction();
+                }
+            }
+            lastGO = false;
+            limitFn();
         });
 
         var adW = adsButtons[adsButtons.length - 1].x + adsButtons[adsButtons.length - 1].width;
 
-        var adBg = scene.add.rectangle(0, adsButtons[0].y + 4, adW, 118, 0xffffff);
+        adBg = scene.add.rectangle(0, adsButtons[0].y + 4, adW, 118, 0xffffff);
         
         window.adBg = adBg;
         adBg.setOrigin(0, 0.5);
         adBg.setInteractive();
 
-        var scroller = scene.add.container(adContainer.x, 0);
+        scroller = scene.add.container(adContainer.x, 0);
         var drag = scene.plugins.get('rexDrag').add(adBg, {
             enable: true,
             axis: 1,      //0|'both'|'h&v'|1|'horizontal'|'h'|2|'vertical'|'v'
@@ -115,13 +172,7 @@ class ProfileContainer extends Phaser.GameObjects.Container {
             scroller.x = adBg.x;
         });
         adBg.on('dragend', function(pointer, dragX, dragY){ 
-            if (adBg.x < -371) {
-                adBg.x = -371
-            }
-            if (adBg.x > 0) {
-                adBg.x = 0
-            }
-            scroller.x = adBg.x;
+            limitFn();
         });
 
         window.adContainer = adContainer;

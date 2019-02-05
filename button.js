@@ -171,20 +171,75 @@ class Shapes extends Phaser.Plugins.BasePlugin {
 
         cont.add([circleBg, circleBgActive, circle, r, pic, valBg, v]);
         cont.setSize(100, 108);
-        
-        cont.setInteractive();
-        scene.children.add(cont);
-        cont.on("pointerdown", () => {
-            //_bgActive.visible = true;
+        cont.clickAction = function () {
             circleBgActive.visible = true;
-            console.log(0);
+                setTimeout(function () {
+                    circleBgActive.visible = false;
+                    console.log('click');
+                }, 200)
+        }
+        /* cont.setInteractive({ draggable: true });
+        scene.children.add(cont);
+
+        cont.isDowning = false;
+        var timeTresh = 200;
+        cont.isPointerout = true;
+        console.log(cont);
+        cont.on("dragstart", (pointer, localX, localY) => {
+            cont.isDragg = true;
+            cont.isDown = false;
+            circleBgActive.visible = false;
+            cont.deltaX = localX;
+            console.log('start drag', cont.x, localX);
+            cont.timeStart = Date.now();
+            cont.isPointerout = false;
+        })
+        cont.on("drag", (pointer, localX, localY) => {
+            //console.log('drag', localX, localY);
+            if (cont.isPointerout || Date.now() - cont.timeStart > timeTresh) {
+                console.log('dragging');
+            }
+        })
+
+        cont.on("dragend", () => {
+            console.log('end drag')
+            cont.isDragg = false;
+            cont.isDown = false;
+            if ( Date.now() - cont.timeStart < timeTresh ) {
+                circleBgActive.visible = true;
+                setTimeout(function () {
+                    circleBgActive.visible = false;
+                    console.log('click');
+                }, 200)
+            }
+        })
+
+        cont.on("pointerout", () => { 
+            cont.isPointerout = true;
+        }); */
+
+        /* cont.on("pointerdown", () => {
+            //_bgActive.visible = true;
+            if (!cont.isDragg ) {
+                circleBgActive.visible = true;
+                console.log(0);
+            } else {
+                cont.isDown = true;
+            }
         }, scene);
+
+
+
         cont.on("pointerup", () => {
             //_bgActive.visible = false;
-            console.log(1);
-            circleBgActive.visible = false;
-            callback && callback.call(scene);
-        }, scene);
+            if (cont.isDown) {
+                cont.isDown = false;
+                console.log(1);
+                circleBgActive.visible = false;
+                callback && callback.call(scene);
+            }
+        }, scene); */
+
         return cont;
     }
 }
