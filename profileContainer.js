@@ -47,11 +47,11 @@ class ProfileContainer extends Phaser.GameObjects.Container {
         heroPic.y = 530 - 88 - heroPic.height;
         container.add([bgRoom, heroPic]);
         
-        var name = scene.add.text(100, 300-88, 
+        /* var name = scene.add.text(100, 300-88, 
         `${window.outerWidth} \n ${window.outerHeight} \n ${window.innerWidth} \n ${window.innerHeight}`, 
         {fontFamily: 'Arial', fontSize: 30, color: '#ff0'} )
         name.setOrigin(0)
-
+ */
         var name = scene.add.text(601, 401-88, 'КОНСТАНТИН',  {fontFamily: 'Arial', fontSize: 40, color: '#fff'} )
         name.setOrigin(1)
         var age = scene.add.text(601, 446-88, '27 лет',  {fontFamily: 'Arial', fontSize: 30, color: '#fff'} )
