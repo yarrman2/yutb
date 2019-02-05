@@ -130,6 +130,7 @@ class ProfileContainer extends Phaser.GameObjects.Container {
                 //startDrag = true;
                 console.log('scene start', gameObject)
             }
+            startDrag = false;
         });
 
         scene.input.on('drag', function(pointer, gameObject, dragX, dragY){
