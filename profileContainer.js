@@ -149,7 +149,6 @@ class ProfileContainer extends Phaser.GameObjects.Container {
         });
 
         var adW = adsButtons[adsButtons.length - 1].x + adsButtons[adsButtons.length - 1].width;
-
         adBg = scene.add.rectangle(0, adsButtons[0].y + 4, adW, 118, 0xffffff);
         
         window.adBg = adBg;
