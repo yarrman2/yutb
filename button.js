@@ -178,14 +178,15 @@ class Shapes extends Phaser.Plugins.BasePlugin {
                     console.log('click');
                 }, 200)
         }
-        /* cont.setInteractive({ draggable: true });
+        //cont.setInteractive({ draggable: true });
         scene.children.add(cont);
 
         cont.isDowning = false;
         var timeTresh = 200;
         cont.isPointerout = true;
         console.log(cont);
-        cont.on("dragstart", (pointer, localX, localY) => {
+        
+       /*  cont.on("dragstart", (pointer, localX, localY) => {
             cont.isDragg = true;
             cont.isDown = false;
             circleBgActive.visible = false;
@@ -213,32 +214,26 @@ class Shapes extends Phaser.Plugins.BasePlugin {
                 }, 200)
             }
         })
-
+*/
         cont.on("pointerout", () => { 
-            cont.isPointerout = true;
-        }); */
+            //cont.isPointerout = true;
+            circleBgActive.visible = false;
+        }); 
 
-        /* cont.on("pointerdown", () => {
+         cont.on("pointerdown", () => {
             //_bgActive.visible = true;
-            if (!cont.isDragg ) {
-                circleBgActive.visible = true;
-                console.log(0);
-            } else {
-                cont.isDown = true;
-            }
+            circleBgActive.visible = true;
         }, scene);
 
 
 
         cont.on("pointerup", () => {
             //_bgActive.visible = false;
-            if (cont.isDown) {
-                cont.isDown = false;
-                console.log(1);
-                circleBgActive.visible = false;
-                callback && callback.call(scene);
-            }
-        }, scene); */
+            console.log(1);
+            circleBgActive.visible = false;
+            callback && callback.call(scene);
+            
+        }, scene);
 
         return cont;
     }

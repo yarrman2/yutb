@@ -52,6 +52,9 @@ class ProfileContainer extends Phaser.GameObjects.Container {
         {fontFamily: 'Arial', fontSize: 30, color: '#ff0'} )
         name.setOrigin(0)
  */
+        var tap = 0
+        var l = scene.add.text(300, 350-88, tap,  {fontFamily: 'Arial', fontSize: 30, color: '#ff0'} )
+        l.setOrigin(1)
         var name = scene.add.text(601, 401-88, 'КОНСТАНТИН',  {fontFamily: 'Arial', fontSize: 40, color: '#fff'} )
         name.setOrigin(1)
         var age = scene.add.text(601, 446-88, '27 лет',  {fontFamily: 'Arial', fontSize: 30, color: '#fff'} )
@@ -59,7 +62,7 @@ class ProfileContainer extends Phaser.GameObjects.Container {
         var profile = scene.add.text(601, 489-88, 'ПРОФИЛЬ',  {fontFamily: 'Arial', fontSize: 30, color: '#cecece'} )
         profile.setOrigin(1)
 
-        container.add([name, age, profile]);
+        container.add([l, name, age, profile]);
 
         var channelName = scene.add.container(0, 531-90);
         var g = scene.add.rectangle(0, 0, 640, 100, '0xffffff');
@@ -95,6 +98,8 @@ class ProfileContainer extends Phaser.GameObjects.Container {
         adsTitle.forEach(function (adt, i) {
             var sh = shapes.getButtonAd(scene, {x: 120 * i + 70, y:100, val: adt}, function () {
                 console.log(i);
+                tap++;
+                l.setText(tap);
             });
             sh.type = 'adButton'
             adsButtons.push(sh);
@@ -120,7 +125,7 @@ class ProfileContainer extends Phaser.GameObjects.Container {
             scroller.x = adBg.x;
         }
 
-        scene.input.on('dragstart', function(pointer, gameObject){ 
+       /*  scene.input.on('dragstart', function(pointer, gameObject){ 
             if (gameObject.type == 'adButton') {
                 deltaX = scroller.x - pointer.x;
                 beginPointerX = pointer.x;
@@ -156,7 +161,7 @@ class ProfileContainer extends Phaser.GameObjects.Container {
             }
             lastGO = false;
             limitFn();
-        });
+        }); */
 
         var adW = adsButtons[adsButtons.length - 1].x + adsButtons[adsButtons.length - 1].width;
         adBg = scene.add.rectangle(0, adsButtons[0].y + 4, adW, 118, 0xffffff);
