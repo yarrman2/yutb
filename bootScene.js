@@ -40,6 +40,14 @@ var BootScene = new Phaser.Class({
         //game.setData({ money: 1000000, subscribers: 1000});
     },
     create: function ()  {
+
+        window.canvas = document.getElementsByTagName('canvas')[0];
+        //canvas.setAttribute('height', window.outerHeight);
+        //canvas.setAttribute('width', window.outerWidth );
+        canvas.style.height =  window.outerHeight + 'px';
+        canvas.style.width =  window.outerWidth + 'px';
+
+
         console.log('init')
         console.log(this.scene);
 

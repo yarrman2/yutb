@@ -1,7 +1,13 @@
-console.log(window.innerWidth, window.innerHeight);
-var app = document.getElementById('app');
-app.setAttribute('width', window.outerWidth);
-app.setAttribute('height', window.outerHeight);
+console.log(window.outerWidth, window.outerHeight);
+window.app = document.getElementById('app');
+app.setAttribute('height', window.outerWidth);
+var ratio = window.outerHeight / window.outerWidth;
+var ratioOrig = 1136/640;
+
+
+
+
+
 
 var config  = {
     type: Phaser.AUTO,
@@ -33,4 +39,5 @@ var config  = {
 }
 
 var game = new Phaser.Game(config);
+
 game.scene.start('boot');
